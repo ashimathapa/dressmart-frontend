@@ -1,0 +1,118 @@
+/* Main Footer Container */
+.footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    background: linear-gradient(to right, #f0e6e5, #fff);
+}
+
+/* Footer Logo Section */
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.footer-logo img {
+    width: 50px; /* Adjust logo size */
+    height: auto;
+    margin-right: 15px; /* Space between logo and text */
+}
+
+.footer-logo p {
+    color: #383838;
+    font-size: 46px;
+    font-weight: 700;
+}
+
+/* Footer Links Section */
+.footer-links {
+    list-style: none; /* Remove default list styling */
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margin */
+    display: flex;
+    gap: 50px; /* Space between links */
+    color: #252525;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.footer-links li {
+    font-weight: 500; /* Increase the font weight */
+    transition: color 0.3s ease-in-out; /* Smooth transition */
+}
+
+.footer-links li:hover {
+    color: #e67e22; /* Change link color on hover */
+}
+
+/* Social Icons Section */
+.footer-socials-icon {
+    display: flex;
+    gap: 20px; /* Space between icons */
+}
+
+.footer-icons-container {
+    padding: 10px;
+    background: #fbfbfb;
+    border: 1px solid #ebebeb;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s;
+}
+
+.footer-icons-container:hover {
+    background-color: #e67e22; /* Background color change on hover */
+}
+
+.footer-icons-container a {
+    color: #252525; /* Default icon color */
+    transition: color 0.3s ease;
+}
+
+.footer-icons-container a:hover {
+    color: white; /* Change icon color on hover */
+}
+
+/* Footer Copyright Section */
+.footer-copyright {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    width: 100%;
+    margin-bottom: 30px;
+    color: #1a1a1a;
+    font-size: 20px;
+    text-align: center; 
+    margin-top: 20px; 
+
+}
+
+.footer-copyright hr {
+    width: 80%;
+    border: none; 
+    border-radius: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.3); 
+    margin: 10px 0; 
+    background: #c7c7c7;
+}
+
+.footer-copyright p {
+    margin: 0; 
+    font-size: 0.9rem; 
+}
+/* Media Query for Responsive Design */
+@media (max-width: 768px) {
+    .footer-links {
+        flex-direction: column; /* Stack links vertically on smaller screens */
+        gap: 20px; /* Adjust gap for smaller screens */
+    }
+
+    .footer-logo p {
+        font-size: 36px; /* Reduce logo text size for mobile */
+    }
+}

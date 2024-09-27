@@ -1,0 +1,153 @@
+/* Hero Section */
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px 20px;
+    background: linear-gradient(to right, #f0e6e5, #fff);
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+/* Banner Section */
+.banner {
+    display: flex;
+    justify-content: space-between; /* Align text to the left and images to the right */
+    align-items: center; /* Vertically center content */
+    padding: 20px 40px; /* Add padding to create space around the banner */
+}
+
+.banner-content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.banner-text {
+    flex: 1;
+    max-width: 50%; /* Ensure the text takes half the width of the banner */
+    padding: 20px;
+}
+
+.banner-text h1 {
+    font-size: 3rem; /* Make the main heading larger */
+    font-weight: bold; /* Make it bold for emphasis */
+    margin-bottom: 10px;
+}
+
+.banner-text p {
+    font-size: 1.5rem; /* Increase the size of the paragraph */
+    margin-bottom: 20px;
+}
+
+.banner-text button {
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    background-color: #FF7F50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.banner-text button:hover {
+    background-color: #FF6347;
+}
+
+/* Image Section */
+.banner-images {
+    display: flex;
+    flex-direction: column; /* Stack the rows vertically */
+    justify-content: center; /* Vertically center both rows */
+    gap: 60px; /* Vertical gap between upper and lower rows */
+    flex: 1;
+    align-items: center; /* Center content horizontally */
+    padding-right: 20px;
+    position: relative;
+    margin: 20px; /* Margin around the entire section */
+}
+
+.upper-row,
+.lower-row {
+    display: flex;
+    gap: 20px; /* Horizontal gap between images in the same row */
+    width: 100%;
+    justify-content: center; /* Center the images within the row */
+    margin-bottom: 20px; /* Additional space below each row */
+}
+
+.upper-row img,
+.lower-row img {
+    max-width: 140px;
+    height: auto;
+    border-radius: 12px;
+}
+
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+    .hero {
+        flex-direction: column;
+        text-align: center; /* Center-align the text */
+    }
+
+    .hero-left {
+        margin-bottom: 30px; /* Space below the left section */
+    }
+
+    .banner {
+        flex-direction: column;
+        padding: 20px; /* Reduce padding on smaller screens */
+    }
+
+    .banner-text {
+        max-width: 100%; /* Make the text take full width on smaller screens */
+        text-align: center; /* Center-align the text */
+        padding: 10px; /* Adjust padding */
+    }
+
+    .banner-text h1 {
+        font-size: 2.5rem; /* Slightly smaller font for tablets */
+    }
+
+    .banner-text p {
+        font-size: 1.3rem;
+    }
+
+    .banner-images {
+        align-items: center; /* Center images */
+    }
+
+    .upper-row img,
+    .lower-row img {
+        max-width: 100px; /* Adjust image size for smaller screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .banner {
+        padding: 10px; /* Reduce padding for mobile */
+    }
+
+    .banner-text h1 {
+        font-size: 2rem; /* Reduce font size for mobile */
+    }
+
+    .banner-text p {
+        font-size: 1.1rem; /* Smaller paragraph font */
+    }
+
+    .banner-images {
+        gap: 10px; /* Reduce gap between rows */
+    }
+
+    .upper-row,
+    .lower-row {
+        justify-content: center; /* Center the images */
+    }
+
+    .upper-row img,
+    .lower-row img {
+        max-width: 80px; /* Smaller images for mobile */
+    }
+}

@@ -1,0 +1,179 @@
+/* Navbar container styling */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #f8f8f8;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  flex-wrap: wrap;
+}
+
+/* Logo styling */
+.nav-logo {
+  display: flex;
+  align-items: center;
+}
+
+.nav-logo img {
+  width: 50px;
+  margin-right: 10px;
+}
+
+.nav-logo p {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Menu styling */
+.nav-menu {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+}
+
+.nav-menu li {
+  margin: 0 20px;
+  position: relative;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.nav-menu li:hover,
+.nav-menu li.active {
+  color: #ff4081;
+}
+
+/* Sliding underline effect for menu items */
+.nav-menu li::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 0;
+  height: 2px;
+  background-color: #ff4081;
+  transition: width 0.3s ease;
+}
+
+.nav-menu li.active::after,
+.nav-menu li:hover::after {
+  width: 100%;
+}
+
+/* Login and Cart styling */
+.nav-login-cart {
+  display: flex;
+  align-items: center;
+}
+
+.nav-login-cart button {
+  background-color: #ff4081;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-right: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.nav-login-cart button:hover {
+  background-color: #e0336f;
+}
+
+.cart-icon {
+  position: relative;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.cart-icon:hover,
+.cart-icon.active {
+  color: #ff4081;
+}
+
+/* Optional underline for the cart icon */
+.cart-icon::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 0;
+  height: 2px;
+  background-color: #ff4081;
+  transition: width 0.3s ease;
+}
+
+.cart-icon.active::after,
+.cart-icon:hover::after {
+  width: 100%;
+}
+
+.cart-count {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background-color: rgb(214, 91, 91);
+  color: white;
+  padding: 2px 6px;
+  border-radius: 50%;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* Responsive design for smaller screens */
+@media screen and (max-width: 768px) {
+  .navbar {
+    flex-direction: column;  /* Stack navbar components in a column */
+    align-items: flex-start;
+  }
+
+  .nav-menu {
+    flex-direction: column;  /* Stack menu items vertically */
+    width: 100%;  /* Full width for smaller screens */
+    margin-top: 10px;
+  }
+
+  .nav-menu li {
+    margin: 10px 0;  /* Adjust spacing for vertical menu */
+  }
+
+  .nav-login-cart {
+    margin-top: 10px;
+    flex-direction: column;  /* Stack login and cart buttons vertically */
+    width: 100%;  /* Make login and cart fill the available width */
+  }
+
+  .nav-login-cart button {
+    width: 100%;  /* Make button full-width */
+    margin-bottom: 10px;  /* Add space between button and cart icon */
+    padding: 8px 12px;  /* Adjust button padding */
+    font-size: 0.9rem;
+  }
+
+  .cart-icon {
+    font-size: 24px;  /* Adjust cart icon size */
+    margin-left: auto;  /* Align cart icon to the right */
+  }
+
+  .cart-count {
+    font-size: 12px;  /* Adjust cart count size */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .nav-logo p {
+    font-size: 1.2rem;  /* Reduce logo text size */
+  }
+
+  .nav-login-cart button {
+    padding: 6px 10px;  /* Further adjust button padding */
+    font-size: 0.8rem;
+  }
+}

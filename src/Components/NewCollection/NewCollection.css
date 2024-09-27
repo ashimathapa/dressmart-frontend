@@ -1,0 +1,38 @@
+.new-collections {
+    padding: 40px 20px; /* Adjusts padding around the section */
+    text-align: center; /* Center aligns text */
+    background: linear-gradient(to right, #f0e6e5, #fff);
+}
+
+.new-collections h1 {
+    font-size: 2.5rem; /* Heading size */
+    color: #2c3e50; /* Dark color for the heading */
+    margin-bottom: 10px; /* Space below heading */
+}
+
+.new-collections hr {
+    width: 50%; /* Width of the horizontal rule */
+    margin: 0 auto; /* Center the rule */
+    border: 1px solid #e67e22; /* Color of the rule */
+}
+
+.collections {
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap */
+    justify-content: center; /* Center items */
+    gap: 20px; /* Space between items */
+    padding-top: 20px; /* Space above the items */
+}
+
+.collections .item {
+    background-color: #fff; /* White background for each item */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    padding: 10px; /* Space inside each item */
+    text-align: center; /* Center text inside items */
+    transition: transform 0.3s; /* Animation on hover */
+}
+
+.collections .item:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+}
