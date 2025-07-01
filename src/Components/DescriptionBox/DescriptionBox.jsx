@@ -49,18 +49,6 @@ const DescriptionBox = () => {
                   <button className="review-button">Write a Review</button>
                 )}
               </td>
-              <td className="descriptionbox-reviews" style={{ width: '50%' }}>
-                {activeTab === 'reviews' && (
-                  <div>
-                    <p>Customer Reviews:</p>
-                    <p>★★★★☆ - "Absolutely loved the bouquet!"</p>
-                    <p>★★★☆☆ - "Good service, but the delivery was late."</p>
-                    <p>★★★★★ - "The flowers were fresh and beautiful!"</p>
-                    <p>★★★★☆ - "A bit pricey, but worth it!"</p>
-                    <p>★★★★★ - "Best flower shop in town!"</p>
-                  </div>
-                )}
-              </td>
             </tr>
           </tbody>
         </table>

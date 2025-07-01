@@ -1,29 +1,28 @@
-import React from 'react'
-import './ReleatedProduct.css'
-import data_flower from '../Assets/data'
-import Item from '../Item/Item'
+import React, { useEffect, useState } from 'react';
+import './ReleatedProduct.css';
+import Item from '../Item/Item';
 
 const ReleatedProduct = () => {
+  const [relatedProducts, setRelatedProducts] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:5000/allproducts')
+      .then((response) => response.json())
+      .then((data) => setRelatedProducts(data))
+      .catch((err) => console.error('Error fetching related products:', err));
+  }, []);
+
   return (
     <div className='relatedproduct'>
-        <h1>Related Product</h1>
-        <hr/>
-        <div className="relatedproduct-item">
-        {data_flower.map((item) => {
-          return (
-            <Item
-              key={item.id} // Use item.id as the key
-              id={item.id}
-              name={item.name}
-              image={item.image}
-              new_price={item.new_price}
-              old_price={item.old_price}
-            />
-          );
-        })}
-        </div>
+      <h1>Related Products</h1>
+      <hr />
+      <div className="relatedproduct-item">
+        {relatedProducts.map((item) => (
+          <Item key={item.id} {...item} />
+        ))}
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default ReleatedProduct
+export default ReleatedProduct;

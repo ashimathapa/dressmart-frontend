@@ -22,7 +22,7 @@
 }
 
 .footer-logo p {
-    color: #383838;
+    color: #550707;
     font-size: 46px;
     font-weight: 700;
 }
@@ -34,7 +34,7 @@
     margin: 0; /* Remove margin */
     display: flex;
     gap: 50px; /* Space between links */
-    color: #252525;
+    color: #550707;
     font-size: 20px;
     cursor: pointer;
 }
@@ -45,7 +45,7 @@
 }
 
 .footer-links li:hover {
-    color: #e67e22; /* Change link color on hover */
+    color: #130c0b; /* Change link color on hover */
 }
 
 /* Social Icons Section */
@@ -65,7 +65,7 @@
 }
 
 .footer-icons-container:hover {
-    background-color: #e67e22; /* Background color change on hover */
+    background-color:#130c0b;; /* Background color change on hover */
 }
 
 .footer-icons-container a {

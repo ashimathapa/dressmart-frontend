@@ -1,23 +1,32 @@
 import React, { useState } from 'react';
 import './CSS/LoginSignup.css';
 import helloImage from '../Components/Assets/hello.jpeg';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const LoginSignup = () => {
   const [state, setState] = useState("Login");
-  const [formData, setFormData] = useState({
-    username: "",
-    password: "",
-    email: ""
-  });
+  const [formData, setFormData] = useState({ username: "", password: "", email: "" });
+  const [loading, setLoading] = useState(false);
 
   const changeHandler = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const login = async () => {
-    console.log("Login Function Executed", formData);
-    let responseData;
+  const handleResponse = (responseData) => {
+    if (responseData.success) {
+      localStorage.setItem('auth-token', responseData.token);
+      toast.success('Login successful! Redirecting...');
+      setTimeout(() => {
+        window.location.replace("/");
+      }, 2000);
+    } else {
+      toast.error(responseData.errors || 'Operation failed');
+    }
+  };
 
+  const login = async () => {
+    setLoading(true);
     try {
       const response = await fetch('http://localhost:5000/login', {
         method: 'POST',
@@ -27,26 +36,18 @@ const LoginSignup = () => {
         },
         body: JSON.stringify(formData),
       });
-
-      responseData = await response.json();
-
-      if (responseData.success) {
-        localStorage.setItem('auth-token', responseData.token);
-        alert('Login successful!');
-        window.location.replace("/");
-      } else {
-        alert(responseData.errors || 'Login failed');
-      }
+      const responseData = await response.json();
+      handleResponse(responseData);
     } catch (error) {
       console.error('Login error:', error);
-      alert('An error occurred during login');
+      toast.error('An error occurred during login');
+    } finally {
+      setLoading(false);
     }
   };
 
   const signup = async () => {
-    console.log("Signup Function Executed", formData);
-    let responseData;
-
+    setLoading(true);
     try {
       const response = await fetch('http://localhost:5000/signup', {
         method: 'POST',
@@ -56,18 +57,13 @@ const LoginSignup = () => {
         },
         body: JSON.stringify(formData),
       });
-
-      responseData = await response.json();
-
-      if (responseData.success) {
-        localStorage.setItem('auth-token', responseData.token);
-        window.location.replace("/");
-      } else {
-        alert(responseData.errors || 'Signup failed');
-      }
+      const responseData = await response.json();
+      handleResponse(responseData);
     } catch (error) {
       console.error('Signup error:', error);
-      alert('An error occurred during signup');
+      toast.error('An error occurred during signup');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -77,6 +73,7 @@ const LoginSignup = () => {
         <div className="login-form">
           <h2>{state === 'Login' ? 'Login' : 'Sign Up'}</h2>
           <p>{state === 'Login' ? 'Login and have more fun' : 'Join us and have more fun!'}</p>
+
           <form onSubmit={(e) => e.preventDefault()}>
             {state === 'Sign Up' && (
               <input
@@ -107,33 +104,28 @@ const LoginSignup = () => {
             <button
               className="login-button"
               onClick={() => (state === 'Login' ? login() : signup())}
+              disabled={loading}
             >
-              Continue
+              {loading ? 'Loading...' : 'Continue'}
             </button>
           </form>
 
-          {state === 'Sign Up' ? (
-            <p className="register-link">
-              Already have an account?{' '}
-              <span onClick={() => setState('Login')}>Login here</span>
-            </p>
-          ) : (
-            <p className="register-link">
-              Don't have an account?{' '}
-              <span onClick={() => setState('Sign Up')}>Sign Up here</span>
-            </p>
-          )}
-
-          <div className="remember-me">
-            <input type="checkbox" required />
-            <p>By continuing, I agree to the terms of use & privacy policy</p>
-          </div>
+          <p className="register-link">
+            {state === 'Sign Up'
+              ? 'Already have an account? '
+              : "Don't have an account? "}
+            <span onClick={() => setState(state === 'Login' ? 'Sign Up' : 'Login')}>
+              {state === 'Sign Up' ? 'Login here' : 'Sign Up here'}
+            </span>
+          </p>
         </div>
 
         <div className="login-image">
           <img src={helloImage} alt="Welcome" />
         </div>
       </div>
+
+      <ToastContainer />
     </div>
   );
 };

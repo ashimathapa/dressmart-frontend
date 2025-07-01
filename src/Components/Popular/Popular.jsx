@@ -1,26 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Popular.css';
-import data_flower from '../Assets/data';
 import Item from '../Item/Item';
 
 const Popular = () => {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:5000/allproducts')
+      .then((res) => res.json())
+      .then((data) => setProducts(data))
+      .catch((error) => {
+        console.error('Failed to fetch products:', error);
+      });
+  }, []);
+
   return (
-    <div className='popular'>
-      <h1>POPULAR FOR GIFTS</h1>
+    <div className="new-collections">
+      <h1>Popular For Women</h1>
       <hr />
-      <div className="popular-item">
-        {data_flower.map((item) => {
-          return (
-            <Item
-              key={item.id} // Use item.id as the key
-              id={item.id}
-              name={item.name}
-              image={item.image}
-              new_price={item.new_price}
-              old_price={item.old_price}
-            />
-          );
-        })}
+      <div className="collections">
+        {products.map((item) => (
+          <Item key={item.id} {...item} />
+        ))}
       </div>
     </div>
   );

@@ -66,17 +66,6 @@ input[type="email"] {
     background-color: #e6763b;
 }
 
-/* Remember me checkbox and text */
-.remember-me {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-    font-size: 14px;
-}
-
-.remember-me input {
-    margin-right: 10px;
-}
 
 /* Links to switch between login/signup */
 .register-link {

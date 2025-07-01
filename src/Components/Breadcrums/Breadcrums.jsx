@@ -3,14 +3,14 @@ import './Breadcrums.css';
 import { FaChevronRight } from 'react-icons/fa'; // Import the arrow icon
 
 const Breadcrums = (props) => {
-    const { flower } = props;
+    const { product } = props;
 
     return (
         <div className='breadcrums'>
             HOME <FaChevronRight />
             SHOP <FaChevronRight />
-            {flower.category} <FaChevronRight />
-            {flower.name}
+            {product.category} <FaChevronRight />
+            {product.name}
         </div>
     );
 };

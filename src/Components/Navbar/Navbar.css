@@ -1,179 +1,249 @@
-/* Navbar container styling */
+/* Navbar Container */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  background-color: #f8f8f8;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  flex-wrap: wrap;
+  background-color: #f8f9fa;
+  height: 60px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  box-sizing: border-box;
 }
 
-/* Logo styling */
-.nav-logo {
-  display: flex;
-  align-items: center;
+
+/* Navbar Title/Logo */
+.navbar h1,
+.logo a {
+  font-size: 24px;
+  cursor: pointer;
+  color: #000;
+  text-decoration: none;
+  transition: color 0.3s ease, border-bottom 0.3s ease;
 }
 
-.nav-logo img {
-  width: 50px;
-  margin-right: 10px;
+/* Hover effect on the Navbar Title */
+.navbar h1:hover,
+.logo a:hover {
+  color: #cc8db4;
+  border-bottom: 1px solid #cc8db4;
 }
 
-.nav-logo p {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #333;
-}
-
-/* Menu styling */
+/* Navbar Menu (Desktop) */
+.navbar-menu,
 .nav-menu {
-  list-style: none;
+  list-style-type: none;
   display: flex;
+  gap: 20px;
   margin: 0;
   padding: 0;
-  flex-wrap: wrap;
 }
 
+/* Navbar Menu Items */
+.navbar-menu li,
 .nav-menu li {
-  margin: 0 20px;
-  position: relative;
-  font-size: 1rem;
   cursor: pointer;
-  transition: color 0.3s ease;
+  padding: 8px 16px;
+  transition: color 0.3s ease, border-bottom 0.3s ease;
 }
 
-.nav-menu li:hover,
-.nav-menu li.active {
-  color: #ff4081;
+/* Navbar Menu Links */
+.navbar-menu li a,
+.nav-menu li a {
+  text-decoration: none;
+  color: inherit;
 }
 
-/* Sliding underline effect for menu items */
-.nav-menu li::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -5px;
-  width: 0;
-  height: 2px;
-  background-color: #ff4081;
-  transition: width 0.3s ease;
+/* Hover effect on Navbar Menu Items */
+.navbar-menu li:hover,
+.nav-menu li:hover {
+  color: #cc8db4;
+  border-bottom: 2px solid #cc8db4;
 }
 
-.nav-menu li.active::after,
-.nav-menu li:hover::after {
-  width: 100%;
-}
-
-/* Login and Cart styling */
-.nav-login-cart {
+/* Navbar Icons Container */
+.navbar-icons,
+.nav-icons {
   display: flex;
   align-items: center;
+  gap: 20px;
 }
 
-.nav-login-cart button {
-  background-color: #ff4081;
+/* Icon Styling */
+.icon {
+  margin: 0 10px;
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.3s ease;
+  font-size: 20px;
+  color: #000;
+}
+
+/* Hover effect on Icons */
+.icon:hover {
+  color: #cc8db4;
+  transform: scale(1.2);
+}
+
+/* ===== MEGA MENU ===== */
+.mega-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  display: flex;
+  background-color: white;
+  z-index: 1000;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-top: 1px solid #eee;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.mega-menu .column {
+  flex: 1;
+  min-width: 200px;
+  padding: 0 15px;
+}
+
+.mega-menu h4 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #cc8db4;
+}
+
+.mega-menu a {
+  display: block;
+  text-decoration: none;
+  color: #555;
+  font-size: 14px;
+  padding: 6px 0;
+  transition: all 0.2s ease;
+}
+
+.mega-menu a:hover {
+  color: #cc8db4;
+  padding-left: 5px;
+}
+
+/* Animation for mega menu */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Media Query for Mobile Devices (max-width: 768px) */
+@media (max-width: 768px) {
+  /* Navbar Menu becomes a dropdown for mobile */
+  .navbar-menu,
+  .nav-menu {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background-color: white;
+    flex-direction: column;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+    gap: 0;
+  }
+
+  /* When menu is active, expand to show items */
+  .navbar-menu.active,
+  .nav-menu.active {
+    max-height: 500px;
+  }
+
+  /* Mobile Navbar Menu Items */
+  .navbar-menu li,
+  .nav-menu li {
+    padding: 12px 20px;
+    border-bottom: 1px solid #eee;
+  }
+
+  /* Mega menu on mobile */
+  .mega-menu {
+    position: static;
+    flex-direction: column;
+    padding: 15px;
+    box-shadow: none;
+    display: none;
+  }
+  
+  .mega-menu.active {
+    display: flex;
+  }
+}
+
+/* Menu Toggle Button Hidden on Desktop */
+.menu-toggle {
+  display: none;
+}
+
+/* Show menu toggle for mobile */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #333;
+    margin-left: auto;
+    margin-right: 15px;
+  }
+}
+/* Cart Badge Styles - Add to existing CSS */
+.cart-icon-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: #ff4d4d;
   color: white;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: bold;
+}
+.nav-button {
   padding: 8px 16px;
+  background-color: #cc8db4;
+  color: white;
   border: none;
   border-radius: 20px;
   cursor: pointer;
-  font-size: 1rem;
-  margin-right: 20px;
-  transition: background-color 0.3s ease;
-}
-
-.nav-login-cart button:hover {
-  background-color: #e0336f;
-}
-
-.cart-icon {
-  position: relative;
-  cursor: pointer;
-  transition: color 0.3s ease;
-}
-
-.cart-icon:hover,
-.cart-icon.active {
-  color: #ff4081;
-}
-
-/* Optional underline for the cart icon */
-.cart-icon::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -5px;
-  width: 0;
-  height: 2px;
-  background-color: #ff4081;
-  transition: width 0.3s ease;
-}
-
-.cart-icon.active::after,
-.cart-icon:hover::after {
-  width: 100%;
-}
-
-.cart-count {
-  position: absolute;
-  top: -10px;
-  right: -10px;
-  background-color: rgb(214, 91, 91);
-  color: white;
-  padding: 2px 6px;
-  border-radius: 50%;
   font-size: 14px;
-  font-weight: bold;
+  font-weight: 500;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Responsive design for smaller screens */
-@media screen and (max-width: 768px) {
-  .navbar {
-    flex-direction: column;  /* Stack navbar components in a column */
-    align-items: flex-start;
-  }
-
-  .nav-menu {
-    flex-direction: column;  /* Stack menu items vertically */
-    width: 100%;  /* Full width for smaller screens */
-    margin-top: 10px;
-  }
-
-  .nav-menu li {
-    margin: 10px 0;  /* Adjust spacing for vertical menu */
-  }
-
-  .nav-login-cart {
-    margin-top: 10px;
-    flex-direction: column;  /* Stack login and cart buttons vertically */
-    width: 100%;  /* Make login and cart fill the available width */
-  }
-
-  .nav-login-cart button {
-    width: 100%;  /* Make button full-width */
-    margin-bottom: 10px;  /* Add space between button and cart icon */
-    padding: 8px 12px;  /* Adjust button padding */
-    font-size: 0.9rem;
-  }
-
-  .cart-icon {
-    font-size: 24px;  /* Adjust cart icon size */
-    margin-left: auto;  /* Align cart icon to the right */
-  }
-
-  .cart-count {
-    font-size: 12px;  /* Adjust cart count size */
-  }
+.nav-button:hover {
+  background-color: #b5749c;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(204, 141, 180, 0.4);
 }
 
-@media screen and (max-width: 480px) {
-  .nav-logo p {
-    font-size: 1.2rem;  /* Reduce logo text size */
-  }
-
-  .nav-login-cart button {
-    padding: 6px 10px;  /* Further adjust button padding */
-    font-size: 0.8rem;
-  }
+.nav-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
