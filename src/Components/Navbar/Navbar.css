@@ -14,7 +14,6 @@
   box-sizing: border-box;
 }
 
-
 /* Navbar Title/Logo */
 .navbar h1,
 .logo a {
@@ -85,6 +84,50 @@
 .icon:hover {
   color: #cc8db4;
   transform: scale(1.2);
+}
+
+/* Admin Icon Specific Styles */
+.admin-icon {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  color: #333;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.admin-icon .icon {
+  color: #6c757d; /* Different color for admin icon */
+}
+
+.admin-icon:hover .icon {
+  color: #cc8db4;
+  transform: scale(1.2);
+}
+
+/* Admin Tooltip */
+.admin-icon::after {
+  content: 'Admin Dashboard';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #333;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  z-index: 1001;
+}
+
+.admin-icon:hover::after {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(5px);
 }
 
 /* ===== MEGA MENU ===== */
@@ -183,6 +226,11 @@
   .mega-menu.active {
     display: flex;
   }
+
+  /* Adjust admin icon for mobile */
+  .admin-icon {
+    margin-right: 5px;
+  }
 }
 
 /* Menu Toggle Button Hidden on Desktop */
@@ -203,7 +251,8 @@
     margin-right: 15px;
   }
 }
-/* Cart Badge Styles - Add to existing CSS */
+
+/* Cart Badge Styles */
 .cart-icon-wrapper {
   position: relative;
   display: inline-block;
@@ -224,6 +273,8 @@
   font-size: 10px;
   font-weight: bold;
 }
+
+/* Nav Button Styles */
 .nav-button {
   padding: 8px 16px;
   background-color: #cc8db4;

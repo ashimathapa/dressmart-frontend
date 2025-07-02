@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { FaSearch, FaShoppingCart, FaBars } from 'react-icons/fa';
+import { FaSearch, FaShoppingCart, FaBars, FaUserShield } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { ShopContext } from '../../Context/ShopContext';
 import './Navbar.css';
@@ -8,21 +8,32 @@ const Navbar = () => {
   const [showMegaMenu, setShowMegaMenu] = useState('');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [userData, setUserData] = useState(null);
   const { cartTotalItems } = useContext(ShopContext);
 
   useEffect(() => {
-    setIsAuthenticated(!!localStorage.getItem('auth-token'));
+    const token = localStorage.getItem('auth-token');
+    const storedUserData = localStorage.getItem('userData');
+    
+    setIsAuthenticated(!!token);
+    if (storedUserData) {
+      setUserData(JSON.parse(storedUserData));
+    }
   }, []);
 
   const handleLogout = () => {
     localStorage.removeItem('auth-token');
+    localStorage.removeItem('userData');
     setIsAuthenticated(false);
+    setUserData(null);
     window.location.replace('/');
   };
 
   const handleHover = (menuName) => setShowMegaMenu(menuName);
   const handleLeave = () => setShowMegaMenu('');
   const toggleMobileMenu = () => setMobileMenuOpen(!mobileMenuOpen);
+
+  const isAdmin = userData?.roles?.includes('admin');
 
   return (
     <div className="navbar" onMouseLeave={handleLeave}>
@@ -36,7 +47,6 @@ const Navbar = () => {
 
       <ul className={`nav-menu ${mobileMenuOpen ? 'active' : ''}`}>
         <li><Link to="/">Shop</Link></li>
-
         {/* Men */}
         <li onMouseEnter={() => handleHover('men')}>
           <Link to="/mens">Men</Link>
@@ -164,6 +174,22 @@ const Navbar = () => {
 
       <div className="nav-icons">
         <Link to="/search"><FaSearch className="icon" /></Link>
+        
+       {isAdmin && (
+  <a 
+    href="http://localhost:5173/admin" 
+    className="admin-link"
+    onClick={(e) => {
+      e.preventDefault();
+      // Encode the token for URL safety
+      const token = encodeURIComponent(localStorage.getItem('auth-token'));
+      // Redirect with token in URL hash (more secure than query params)
+      window.location.href = `http://localhost:5173/admin#token=${token}`;
+    }}
+  >
+    <FaUserShield className="icon" title="Admin Dashboard" />
+  </a>
+)}
         {isAuthenticated ? (
           <button className="nav-button" onClick={handleLogout}>Logout</button>
         ) : (
@@ -171,6 +197,7 @@ const Navbar = () => {
             <button className="nav-button">Login</button>
           </Link>
         )}
+        
         <div className="cart-icon-wrapper">
           <Link to="/cart"><FaShoppingCart className="icon" /></Link>
           {cartTotalItems > 0 && (
